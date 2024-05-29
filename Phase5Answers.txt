@@ -1,0 +1,52 @@
+-- Project Phase 5 Answers
+
+USE MSIS230;
+
+-- Question 1
+SELECT concat(EmployeeFName, ' ', EmployeeLName) as 'Full Name', DayOfWeek, StartTime, EndTime
+FROM employee emp, schedule sch
+where emp.EmployeeID = sch.EmployeeID
+order by StartTime, emp.EmployeeID;
+
+-- Question 2
+SELECT EmployeeLName as 'Last Name', EmployeeFName as 'First Name', Description
+FROM employee emp, employeespecialty emsp, specialty sp
+where emp.EmployeeID = emsp.EmployeeID
+and emsp.SpecialtyID = sp.SpecialtyID
+order by EmployeeLName, Description;
+
+-- Question 3
+SELECT EmployeeLName as 'Last Name', EmployeeFName as 'First Name', Description
+from employee emp, employeetype emt
+where emp.TypeID = emt.TypeID
+order by Description, EmployeeLName;
+
+-- Question 4
+SELECT Date, concat(PatientLName, ' ', PatientFName) as 'Patient Full Name', 
+concat(EmployeeLName, ' ', EmployeeFName) as 'Employee Full Name', StartTime, Duration
+from appointment apt, patient pt, employee emp
+where apt.EmployeeID = emp.EmployeeID
+and apt.PatientID = pt.PatientID
+and Status = 'scheduled'
+order by Date, PatientLName;
+
+-- Question 5
+SELECT Date, PatientLName, PatientFName, Description, 'Condition' as Descriptor
+from medicalhistorycond mh, patient p, medicalconditions mc
+where mh.PatientID = p.PatientID
+and mh.ConditionID = mc.ConditionID
+
+union
+SELECT Date, PatientLName, PatientFName, Description, 'Prescription' as Descriptor
+from medicalhistorypres mhp, patient p, prescription pr
+where mhp.PatientID = p.PatientID
+and pr.PrescriptionID = mhp.PrescriptionID
+
+union
+SELECT Date, PatientLName, PatientFName, Description, 'Surgery' as Descriptor
+from medicalhistorysurg mhs, patient p, surgery s
+where mhs.PatientID = p.PatientID
+and mhs.SurgeryID = s.SurgeryID
+order by Date, PatientLName;
+
+

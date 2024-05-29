@@ -1,0 +1,57 @@
+-- Phase 4 Answers --
+-- Select Using One Table--
+
+-- Question 1 Answer--
+SELECT * FROM msis230.patient
+order by PatientLName; 
+
+-- Question 2 Answer--
+SELECT * FROM msis230.employee
+order by EmployeeLName;
+
+-- Question 3 Answer--
+SELECT concat(PatientLName, ' ', PatientFName) as 'Full Name', City, State 
+ FROM msis230.patient
+ where State = 'MA'
+ order by City, PatientLName;
+ 
+ -- Question 4 Answer--
+SELECT concat(EmployeeFName, ' ', EmployeeLName) as 'Full Name', TypeID
+FROM msis230.employee
+where TypeID = 'PHY' or TypeID = 'SURG'
+order by TypeID, EmployeeLName; 
+
+-- Question 5 Answer--
+SELECT * FROM msis230.medicalconditions
+order by Description;
+
+-- Question 6 Answer--
+SELECT * FROM msis230.prescription
+where Description like '%20mg%'
+order by PrescriptionID;
+
+-- Question 7 Answer--
+SELECT concat(EmployeeFName, ' ', EmployeeLName) as 'Full Name', DateOfHire
+FROM msis230.employee
+where DateOfHire >= '2019-01-01'
+order by DateOfHire desc;
+
+-- Question 8 Answer-- 
+SELECT * FROM msis230.employee
+where Gender = 'F'
+order by EmployeeLName;
+
+-- Question 9 Answer-- 
+SELECT * FROM msis230.specialty
+where Description like '%Surgery%';
+
+-- Question 10 Answer--
+SELECT concat(PatientLName, ' ', PatientFName) as 'Full Name', City, State
+FROM msis230.patient
+where Gender = 'M' and State <> 'MA';
+
+
+ 
+ 
+ 
+ 

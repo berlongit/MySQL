@@ -1,0 +1,32 @@
+-- Project Phase 7 Answers
+
+USE MSIS230;
+
+-- Question 1
+Select ep.EmployeeID, concat(EmployeeFName, ' ', EmployeeLName) as 'Full Name', DayOfWeek, StartTime, EndTime
+From employee ep Left Outer Join schedule sh on ep.EmployeeID = sh.EmployeeID
+Order by StartTime, EmployeeID;
+
+-- Question 2
+USE MSIS230;
+Select Date, concat(PatientFName, ' ', PatientLName) as 'Patient Name',
+		concat(EmployeeFName, ' ', EmployeeLName) as 'Employee Name',
+        StartTime, Duration, Status
+From patient p left outer Join appointment ap on p.PatientID = ap.PatientID
+Join employee e on e.EmployeeID = ap.EmployeeID
+Order by Date desc, PatientLName;
+
+-- Question 3
+Select PrescriptionID, Description
+From prescription 
+Where PrescriptionID not in (select PrescriptionID from medicalhistorypres);
+
+-- Question 4
+Select ConditionID, Description
+From medicalconditions
+Where ConditionID in (select ConditionID from medicalhistorycond);
+
+-- Question 5
+Select TypeID, Description
+From employeetype 
+Where TypeID Not In (Select distinct TypeID from employee);

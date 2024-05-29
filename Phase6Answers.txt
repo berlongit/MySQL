@@ -1,0 +1,67 @@
+-- Project Phase 6 Answers
+
+USE MSIS230;
+
+-- Question 1
+SELECT State, count(PatientID) as Patient_Count
+FROM patient
+group by State
+order by State;
+
+-- Question 2
+SELECT Status, min(Date) as Earliest_Date, max(Date) as Latest_Date  
+FROM appointment
+group by Status;
+
+-- Question 3
+Select TypeID, count(EmployeeID) as Employee_Count
+From employee
+group by TypeID
+order by TypeID;
+
+-- Question 4
+Select DayOfWeek, Count(EmployeeID) as Employee_Count
+From schedule
+Group by DayOfWeek;
+
+-- Question 5
+Select Gender, count(PatientID) as Patient_Count
+From patient
+Group by Gender;
+
+-- Question 6
+Update patient
+Set Gender = 'F'
+Where PatientID = 'DW001';
+
+-- Question 7
+Update appointment
+Set Status = 'Complete'
+Where Status = 'scheduled';
+
+-- Question 8
+Insert into diagnosis (AppointmentID, Diagnosis, PrescriptionID) values
+			('APP001', 'High Cholesterol', 'ARTOR'),
+            ('APP002', 'Headaches/Migraines', 'EZE'),
+            ('APP003', 'Tonsilitis', 'AMOX'),
+            ('APP005', 'Type 2 Diabetes', 'AT25'),
+            ('APP007', 'Pneumonia', 'SERT'),
+            ('APP0010', 'Chest Pain', 'WARF');
+            
+-- Question 9
+UPDATE appointment
+SET Date = '2023-08-22', StartTime = '09:00', Duration = '2', Status = 'Scheduled'
+WHERE AppointmentID = 'APP004';
+
+UPDATE appointment
+SET Date = '2023-10-05', StartTime = '10:00', Duration = '1', Status = 'Scheduled'
+WHERE AppointmentID = 'APP006';
+
+UPDATE appointment
+SET Date = '2023-06-12', StartTime = '08:00', Duration = '2', Status = 'Scheduled'
+WHERE AppointmentID = 'APP008';
+
+UPDATE appointment
+SET Date = '2023-03-28', StartTime = '11:00', Duration = '1', Status = 'Scheduled'
+WHERE AppointmentID = 'APP009';
+
